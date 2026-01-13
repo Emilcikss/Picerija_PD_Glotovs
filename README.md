@@ -7,7 +7,7 @@ Programmā tiek izmantota rinda (Queue), lai pasūtījumi tiktu apkalpoti
 secīgi – pirmais pasūtījums, kas ienāk sistēmā, tiek apkalpots pirmais.
 
 ### Funkcionalitāte
-- []klienta datu ievade (vārds, tālrunis, piegādes veids),
+- [] klienta datu ievade (vārds, tālrunis, piegādes veids),
 - []picas izvēle no saraksta,
 - []picas izmēra izvēle (S / M / L),
 - []mērču un piedevu izvēle,
