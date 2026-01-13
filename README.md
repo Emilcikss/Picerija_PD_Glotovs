@@ -1,5 +1,5 @@
 ##  Picerija – Java picas pasūtījumu sistēma
-
+![Uploading image.png…]()
 Šis projekts ir vienkārša Java programma, 
 kas imitē picas pasūtījumu apkalpošanu picērijā. Programmā tiek izmantota rinda (Queue),
 lai pasūtījumi tiktu apkalpoti secīgi – pirmais pasūtījums, kas ienāk
