@@ -11,15 +11,15 @@ kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkal
 
 ### Funkcionalitāte 🟠
 - [ ] klienta datu ievade (vārds, tālrunis, piegādes veids),
-- [ ]picas izvēle no saraksta,
-- [ ]picas izmēra izvēle (S / M / L),
-- [ ]mērču un piedevu izvēle,
-- [ ]vairāku picu pievienošana vienam pasūtījumam,
-- [ ]automātiska cenas aprēķināšana,
-- [ ]pasūtījumu rinda,
-- [ ]pasūtījumu statusu maiņa (PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS),
-- [ ]aktīvo un nodoto pasūtījumu apskate,
-- [ ]pasūtījumu saglabāšana un ielāde no faila.
+- [ ] picas izvēle no saraksta,
+- [ ] picas izmēra izvēle (S / M / L),
+- [ ] mērču un piedevu izvēle,
+- [ ] vairāku picu pievienošana vienam pasūtījumam,
+- [ ] automātiska cenas aprēķināšana,
+- [ ] pasūtījumu rinda,
+- [ ] pasūtījumu statusu maiņa (PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS),
+- [ ] aktīvo un nodoto pasūtījumu apskate,
+- [ ] pasūtījumu saglabāšana un ielāde no faila.
 
 ---
 
