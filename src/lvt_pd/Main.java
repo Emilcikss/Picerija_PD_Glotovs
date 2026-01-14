@@ -1,11 +1,52 @@
 package lvt_pd;
-
+import javax.sound.sampled.*;
+	import java.io.File;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
+//MUZIKA ATSK
+	    private static Clip klips;
+
+	    public static void atskanotMuziku(String failsCels) {
+	        try {
+	            File muzikasFails = new File(failsCels);
+	            AudioInputStream audioStraume =
+	                    AudioSystem.getAudioInputStream(muzikasFails);
+
+	            klips = AudioSystem.getClip();
+	            klips.open(audioStraume);
+	            klips.start(); 
+
+	        } catch (Exception kluda) {
+	            System.out.println("Kļūda atskaņojot mūziku");
+	            kluda.printStackTrace();
+	        }
+	    }
+
+	    public static void apturetMuziku() {
+	        if (klips != null && klips.isRunning()) {
+	            klips.stop();
+	        }
+	    }
+	
+
+	 // TIKAI BURTI 
+	    public static boolean irTikaiBurti(String teksts) {
+	        return teksts != null
+	                && !teksts.isBlank()
+	                && teksts.matches("[a-zA-ZāčēģīķļņšūžĀČĒĢĪĶĻŅŠŪŽ ]+");
+	    }
+
+	    // TIKAI 8 CIPARI
+	    public static boolean irDerigsNumurs(String teksts) {
+	        return teksts != null
+	                && teksts.matches("\\d{8}");
+	    }
+
+	
     static class PicasVeids {
         String nosaukums;
         double bāzesCena; // M izmēram
@@ -92,11 +133,43 @@ public class Main {
 
 // pasūtījuma reģistrēšana 
     private static void pasutijumaRegistrēšana(Picerija picerija) {
-        String vards = JOptionPane.showInputDialog("Ievadiet vārdu:");
-        if (vards == null || vards.isBlank()) return;
+    	String vards;
 
-        String numurs = JOptionPane.showInputDialog("Ievadiet numuru:");
-        if (numurs == null || numurs.isBlank()) return;
+    	while (true) {
+    	    vards = JOptionPane.showInputDialog("Ievadiet vārdu:");
+    	    if (vards == null) return;
+
+    	    if (irTikaiBurti(vards)) {
+    	        break;
+    	    } else {
+    	        JOptionPane.showMessageDialog(
+    	                null,
+    	                "Vārds drīkst saturēt tikai burtus!",
+    	                "Kļūda",
+    	                JOptionPane.ERROR_MESSAGE
+    	        );
+    	    }
+    	}
+
+
+    	String numurs;
+
+    	while (true) {
+    	    numurs = JOptionPane.showInputDialog("Ievadiet telefona numuru (8 cipari):");
+    	    if (numurs == null) return;
+
+    	    if (irDerigsNumurs(numurs)) {
+    	        break;
+    	    } else {
+    	        JOptionPane.showMessageDialog(
+    	                null,
+    	                "Numuram jābūt tieši no 8 cipariem!",
+    	                "Kļūda",
+    	                JOptionPane.ERROR_MESSAGE
+    	        );
+    	    }
+    	}
+
 
         String[] piegadeIzv = {"UZ_VIETAS", "PIEGADE"};
         String piegade = (String) JOptionPane.showInputDialog(null, "Ievadiet piegādes veidu:", "Piegāde",
@@ -177,7 +250,10 @@ public class Main {
         p.aprekinatCenu(veids.bāzesCena, IZMERA_KOEF[izIndex], PIEDEVAS_CENA, MERCES_CENA);
 
         JOptionPane.showMessageDialog(null, "Izveidota pica:\n\n" + p.IsaInfo());
-        return p;
+        return p;/*
+        /*
+         * urn p;
+         */
     }
 
     // statusa maiņa
@@ -243,7 +319,10 @@ public class Main {
 
             int turp = JOptionPane.showConfirmDialog(null, "Pievienot vēl?", "Turpināt", JOptionPane.YES_NO_OPTION);
             if (turp != JOptionPane.YES_OPTION) break;
-        }
+        }/*
+        /*
+         * 
+         */
         return izveletie;
     }
 
