@@ -14,8 +14,8 @@ public class Pasutijums {
     private LocalDateTime pasutijumaLaiks;
     private Klients klients;
     private PasutijumaStatus statuss;
-    private double kopsumma; 
-    private String piegadesVeids;
+    private double kopsumma;
+    private String piegadesVeids; // "UZ_VIETAS" vai "PIEGADE"
     private List<Pica> picas = new ArrayList<>();
 
     public Pasutijums(int pasutijumaID, Klients klients, String piegadesVeids) {
@@ -33,44 +33,91 @@ public class Pasutijums {
     public LocalDateTime getPasutijumaLaiks() {
     	return pasutijumaLaiks;
     	}
-    public Klients getKlients() {
-    	return klients;
+    public Klients getKlients() { 
+    	return klients; 
     	}
 
-    public PasutijumaStatus getStatuss() {
+    public PasutijumaStatus getStatuss() { 
     	return statuss; 
     	}
-    public void setStatuss(PasutijumaStatus statuss) { 
+    public void setStatuss(PasutijumaStatus statuss) {
     	this.statuss = statuss;
     	}
 
     public double getKopsumma() {
     	return kopsumma; 
-    	} // pagaidām vienmēr 0
+    	}
 
-    public String getPiegadesVeids() { return piegadesVeids; }
-    public void setPiegadesVeids(String piegadesVeids) { this.piegadesVeids = piegadesVeids; }
+    public String getPiegadesVeids() {
+    	return piegadesVeids; 
+    	}
+    public void setPiegadesVeids(String piegadesVeids) {
+    	this.piegadesVeids = piegadesVeids; 
+    	}
 
-    public List<Pica> getPicas() { return picas; }
+    public List<Pica> getPicas() {
+    	return picas; 
+    	}
+    public void setPicas(List<Pica> picas) {
+    	this.picas = picas; 
+    	}
 
     public void pievienotPreci(Pica pica) {
         if (pica != null) {
             picas.add(pica);
-            
+            aprekinatKopSummu();
         }
     }
 
     public void nonemtPreci(int index) {
         if (index >= 0 && index < picas.size()) {
             picas.remove(index);
-            
+            aprekinatKopSummu();
+        }
+    }
+
+    public void aprekinatKopSummu() {
+        double sum = 0;
+        for (Pica p : picas) sum += p.iegutCenu();
+        // piegādes maksa 
+        if ("PIEGADE".equals(piegadesVeids)) sum += 2.50;
+        this.kopsumma = sum;
+    }
+
+    public boolean irAktivs() {
+        switch (statuss) {
+            case PIEŅEMTS:
+            case GATAVOJAS:
+            case GATAVS:
+                return true;
+            default:
+                return false;
         }
     }
 
     public String IsaInfo() {
         return "ID: " + pasutijumaID
                 + " | " + statuss
-                + " | Picas: " + picas.size()
+                + " | " + String.format("%.2f", kopsumma) + "€"
                 + " | Klients: " + klients.getVards();
+    }
+
+    public String fullInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pasūtījums ID: ").append(pasutijumaID).append("\n");
+        sb.append("Laiks: ").append(pasutijumaLaiks).append("\n");
+        sb.append("Statuss: ").append(statuss).append("\n");
+        sb.append("Piegāde: ").append(piegadesVeids).append("\n");
+        sb.append("Klients: ").append(klients.IsaInfo()).append("\n\n");
+
+        if (picas.isEmpty()) sb.append("Picas: -\n");
+        else {
+            sb.append("Picas:\n");
+            for (int i = 0; i < picas.size(); i++) {
+                sb.append("[").append(i + 1).append("] ").append("\n").append(picas.get(i).IsaInfo()).append("\n\n");
+            }
+        }
+        sb.append("Kopsumma: ").append(String.format("%.2f", kopsumma)).append("€\n");
+        return sb.toString();
     }
 }
