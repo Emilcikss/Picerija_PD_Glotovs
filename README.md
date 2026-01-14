@@ -10,8 +10,9 @@ sistēmā, tiek apkalpots pirmais.
 ### Mērķis
 Projekta mērķis ir izveidot vienkāršu, bet pilnībā funkcionālu sistēmu,
 kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkalpošanā picērijā.
+---
 
-### Funkcionalitāte 🟠
+### Funkcionalitāte 🟢 
 - [X] klienta datu ievade (vārds, tālrunis, piegādes veids),
 - [X] picas izvēle no saraksta,
 - [X] picas izmēra izvēle (S / M / L),
@@ -25,6 +26,14 @@ kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkal
 
 ---
 
+### Papildfunkcionalitāte ( PAPILDINĀT PROGRAMMU )🟠
+- [ ] Muzika un skaņas darbībām kā picas pievienošana, fona mūzika.. 🟠
+- [ ] Grafika 🔴 
+- [ ] Bildes un animācijas 🔴 
+- [ ] Timer priekš picas izgatavošanas 🔴 
+- [ ] Darbinieka kods sākumā 🔴 
+      
+---
 ### Izmantotās tehnoloģijas
 - Java
 - Java Collections Framework (Queue, List)
