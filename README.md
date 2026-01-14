@@ -12,16 +12,16 @@ Projekta mērķis ir izveidot vienkāršu, bet pilnībā funkcionālu sistēmu,
 kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkalpošanā picērijā.
 
 ### Funkcionalitāte 🟠
-- [ ] klienta datu ievade (vārds, tālrunis, piegādes veids),
-- [ ] picas izvēle no saraksta,
-- [ ] picas izmēra izvēle (S / M / L),
-- [ ] mērču un piedevu izvēle,
-- [ ] vairāku picu pievienošana vienam pasūtījumam,
-- [ ] automātiska cenas aprēķināšana,
-- [ ] pasūtījumu rinda,
-- [ ] pasūtījumu statusu maiņa (PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS),
-- [ ] aktīvo un nodoto pasūtījumu apskate,
-- [ ] pasūtījumu saglabāšana un ielāde no faila.
+- [X] klienta datu ievade (vārds, tālrunis, piegādes veids),
+- [X] picas izvēle no saraksta,
+- [X] picas izmēra izvēle (S / M / L),
+- [X] mērču un piedevu izvēle,
+- [X] vairāku picu pievienošana vienam pasūtījumam,
+- [X] automātiska cenas aprēķināšana,
+- [X] pasūtījumu rinda,
+- [X] pasūtījumu statusu maiņa (PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS),
+- [X] aktīvo un nodoto pasūtījumu apskate,
+- [X] pasūtījumu saglabāšana un ielāde no faila.
 
 ---
 
