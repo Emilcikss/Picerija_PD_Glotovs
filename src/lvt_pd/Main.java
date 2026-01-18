@@ -350,7 +350,17 @@ public class Main {
             return;
         }
 
-        Pasutijums.PasutijumaStatus[] statusi = Pasutijums.PasutijumaStatus.values();
+        if (pas.isBlokets()) {
+            JOptionPane.showMessageDialog(galvenaisLogs, "Pasūtījums pašlaik gatavojas. Statusu mainīt nevar.");
+            return;
+        }
+
+        Pasutijums.PasutijumaStatus[] statusi;
+        if (pas.getStatuss() == Pasutijums.PasutijumaStatus.GATAVS) {
+            statusi = new Pasutijums.PasutijumaStatus[] { Pasutijums.PasutijumaStatus.NODOTS };
+        } else {
+            statusi = Pasutijums.PasutijumaStatus.values();
+        }
         Pasutijums.PasutijumaStatus jauns = (Pasutijums.PasutijumaStatus) JOptionPane.showInputDialog(
                 galvenaisLogs,
                 "Izvēlies jaunu statusu:\n\n" + pas.IsaInfo(),
@@ -364,6 +374,41 @@ public class Main {
         if (jauns == null) return;
         pas.setStatuss(jauns);
         JOptionPane.showMessageDialog(galvenaisLogs, "Atjaunināts:\n" + pas.IsaInfo());
+
+        if (jauns == Pasutijums.PasutijumaStatus.GATAVOJAS) {
+            int laiks = aprekinatGatavosanasLaiku(pas);
+            saktsGatavosanasTaimeris(pas, laiks);
+        }
+    }
+
+    private static int aprekinatGatavosanasLaiku(Pasutijums pas) {
+        int kopa = 0;
+        for (Pica p : pas.getPicas()) {
+            switch (p.getIzmers()) {
+                case 0 -> kopa += 30;
+                case 1 -> kopa += 45;
+                case 2 -> kopa += 60;
+                default -> kopa += 45;
+            }
+        }
+        return kopa;
+    }
+
+    private static void saktsGatavosanasTaimeris(Pasutijums pas, int sekundes) {
+        pas.setBlokets(true);
+        new Thread(() -> {
+            for (int i = sekundes; i >= 0; i--) {
+                System.out.println("Pasūtījums ID " + pas.getPasutijumaID() + " | Atlikušais laiks: " + i + "s");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+            pas.setStatuss(Pasutijums.PasutijumaStatus.GATAVS);
+            pas.setBlokets(false);
+            atskaņotSkanu("./audio/ding.wav");
+        }).start();
     }
 
     private static void drukatCeku(Picerija picerija) {

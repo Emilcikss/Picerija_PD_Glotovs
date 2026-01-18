@@ -17,7 +17,8 @@ public class Pasutijums {
     private double kopsumma;
     private String piegadesVeids; // "UZ_VIETAS" vai "PIEGADE"
     private List<Pica> picas = new ArrayList<>();
-
+    private boolean blokets;
+    
     public Pasutijums(int pasutijumaID, Klients klients, String piegadesVeids) {
         this.pasutijumaID = pasutijumaID;
         this.klients = klients;
@@ -25,6 +26,7 @@ public class Pasutijums {
         this.pasutijumaLaiks = LocalDateTime.now();
         this.statuss = PasutijumaStatus.PIEŅEMTS;
         this.kopsumma = 0;
+        this.blokets = false;
     }
 
     public int getPasutijumaID() { 
@@ -61,7 +63,12 @@ public class Pasutijums {
     public void setPicas(List<Pica> picas) {
     	this.picas = picas; 
     	}
-
+    public boolean isBlokets() {
+    	return blokets;
+    	}
+    public void setBlokets(boolean blokets) {
+    	this.blokets = blokets;
+    	}
     public void pievienotPreci(Pica pica) {
         if (pica != null) {
             picas.add(pica);
@@ -120,6 +127,7 @@ public class Pasutijums {
         sb.append("Kopsumma: ").append(String.format("%.2f", kopsumma)).append("€\n");
         return sb.toString();
     }
+
 
     public String ceks() {
         StringBuilder sb = new StringBuilder();
