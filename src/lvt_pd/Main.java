@@ -1,6 +1,7 @@
 package lvt_pd;
+
 import javax.sound.sampled.*;
-	import java.io.File;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,22 +10,18 @@ public class Main {
 
 //MUZIKA ATSK
 	    private static Clip klips;
-
-	    public static void atskanotMuziku(String failsCels) {
-	        try {
-	            File muzikasFails = new File(failsCels);
-	            AudioInputStream audioStraume =
-	                    AudioSystem.getAudioInputStream(muzikasFails);
-
-	            klips = AudioSystem.getClip();
-	            klips.open(audioStraume);
-	            klips.start(); 
-
-	        } catch (Exception kluda) {
-	            System.out.println("Kļūda atskaņojot mūziku");
-	            kluda.printStackTrace();
-	        }
-	    }
+		private static void atskaņotSkanu(String soundFile) {
+		    try {
+		        java.io.File f = new java.io.File(soundFile);
+		        javax.sound.sampled.AudioInputStream ais = javax.sound.sampled.AudioSystem.getAudioInputStream(f.toURI().toURL());
+		        javax.sound.sampled.Clip c = javax.sound.sampled.AudioSystem.getClip();
+		        c.open(ais);
+		        c.start();
+		    } catch (Exception e) {
+		        System.out.println("Nevar atskaņot skaņu: " + soundFile);
+		    }
+		}
+		
 
 	    public static void apturetMuziku() {
 	        if (klips != null && klips.isRunning()) {
@@ -48,6 +45,7 @@ public class Main {
 
 	
     static class PicasVeids {
+    	
         String nosaukums;
         double bāzesCena; // M izmēram
 
@@ -59,7 +57,7 @@ public class Main {
         @Override public String toString() {
             return nosaukums + " (" + String.format("%.2f", bāzesCena) + "€)";
         }
-    }
+
 
     private static final PicasVeids[] PICA_SARAKSTS = {
             new PicasVeids("Margarita", 6.00),
@@ -79,7 +77,7 @@ public class Main {
 
     public static void main(String[] args) {
         Picerija picerija = new Picerija();
-
+        atskaņotSkanu("./audio/game.wav");
         while (true) {
             String[] izvelne = {
                     "1) Pasūtījuma reģistrēšana",
@@ -250,10 +248,8 @@ public class Main {
         p.aprekinatCenu(veids.bāzesCena, IZMERA_KOEF[izIndex], PIEDEVAS_CENA, MERCES_CENA);
 
         JOptionPane.showMessageDialog(null, "Izveidota pica:\n\n" + p.IsaInfo());
-        return p;/*
-        /*
-         * urn p;
-         */
+        return p;
+       
     }
 
     // statusa maiņa
@@ -319,14 +315,12 @@ public class Main {
 
             int turp = JOptionPane.showConfirmDialog(null, "Pievienot vēl?", "Turpināt", JOptionPane.YES_NO_OPTION);
             if (turp != JOptionPane.YES_OPTION) break;
-        }/*
-        /*
-         * 
-         */
+        }
         return izveletie;
     }
 
     private static String[] opcijaSaraksts(String[] a) {
     	return a;
     	}
+}
 }

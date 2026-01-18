@@ -102,10 +102,10 @@ public class Picerija {
                         for (String pd : piedevasCsv.split(",")) p.pievienotPiedavu(pd.trim());
                     }
 
-                   
-                    p.aprekinatCenu(0, 0, 0, 0);
-
-                } else if ("BEIGAS".equals(type)) {
+                    p.setCena(cena);
+                    current.pievienotPreci(p);
+                } else if ("END".equals(type) || "BEIGAS".equals(type)) {
+                	
                     if (current != null) current.aprekinatKopSummu();
                     current = null;
                 }

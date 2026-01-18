@@ -59,6 +59,10 @@ public class Pica {
     public double iegutCenu() {
     	return cena;
     	}
+    
+    public void setCena(double cena) {
+        this.cena = cena;
+    }
 
     public void aprekinatCenu(double bāzesCena, double izmēraKoef, double piedevasCena, double mercesCena) { // JAPAPILDINA DIAGRAMMAS!
         // vienkārši: baze*coef + piedevas*X + merces*Y
