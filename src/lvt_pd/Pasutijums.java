@@ -120,4 +120,32 @@ public class Pasutijums {
         sb.append("Kopsumma: ").append(String.format("%.2f", kopsumma)).append("€\n");
         return sb.toString();
     }
+
+    public String ceks() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("PICĒRIJA\n");
+        sb.append("--------------------\n");
+        sb.append("Pasūtījums ID: ").append(pasutijumaID).append("\n");
+        sb.append("Laiks: ").append(pasutijumaLaiks).append("\n");
+        sb.append("Klients: ").append(klients.IsaInfo()).append("\n");
+        sb.append("Piegāde: ").append(piegadesVeids).append("\n");
+        sb.append("--------------------\n");
+
+        if (picas.isEmpty()) sb.append("Picas: -\n");
+        else {
+            for (int i = 0; i < picas.size(); i++) {
+                sb.append(i + 1).append(") ").append(picas.get(i).getNosaukums())
+                  .append(" ").append(picas.get(i).izmersTeksts())
+                  .append(" - ").append(String.format("%.2f", picas.get(i).iegutCenu())).append("€\n");
+            }
+        }
+
+        if ("PIEGADE".equals(piegadesVeids)) sb.append("Piegāde: 2.50€\n");
+
+        sb.append("--------------------\n");
+        sb.append("KOPĀ: ").append(String.format("%.2f", kopsumma)).append("€\n");
+
+        return sb.toString();
+    }
 }

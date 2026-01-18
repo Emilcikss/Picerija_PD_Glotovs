@@ -129,8 +129,9 @@ public class Main {
                     "2) Skatīt aktīvos pasūtījumus",
                     "3) Skatīt nodotos pasūtījumus",
                     "4) Mainīt pasūtījuma statusu",
-                    "5) Saglabāt pasūtījumus failā",
-                    "6) Ielādēt pasūtījumus no faila",
+                    "5) Drukāt čeku",
+                    "6) Saglabāt pasūtījumus failā",
+                    "7) Ielādēt pasūtījumus no faila",
                     "0) Iziet"
             };
 
@@ -148,12 +149,14 @@ public class Main {
                 } else if (izvele.startsWith("4")) {
                     mainitStatusu(picerija);
                 } else if (izvele.startsWith("5")) {
+                    drukatCeku(picerija);
+                } else if (izvele.startsWith("6")) {
                     String f = JOptionPane.showInputDialog(galvenaisLogs, "Faila nosaukums (piem. pasutijumi.txt):");
                     if (f != null && !f.isBlank()) {
                         picerija.saglabatPasutijumuFaila(f.trim());
                         JOptionPane.showMessageDialog(galvenaisLogs, "Saglabāts!");
                     }
-                } else if (izvele.startsWith("6")) {
+                } else if (izvele.startsWith("7")) {
                     String f = JOptionPane.showInputDialog(galvenaisLogs, "Faila nosaukums (piem. pasutijumi.txt):");
                     if (f != null && !f.isBlank()) {
                         picerija.ieladetPasutijumuNoFaila(f.trim());
@@ -213,8 +216,17 @@ public class Main {
 
         String adrese = "-";
         if ("PIEGADE".equals(piegade)) {
-            adrese = JOptionPane.showInputDialog(galvenaisLogs, "Ievadiet adresi:");
-            if (adrese == null || adrese.isBlank()) return;
+            while (true) {
+                adrese = JOptionPane.showInputDialog(galvenaisLogs, "Ievadiet adresi:");
+                if (adrese == null) return;
+                if (!adrese.isBlank()) break;
+                JOptionPane.showMessageDialog(
+                        galvenaisLogs,
+                        "Adrese nedrīkst būt tukša!",
+                        "Kļūda",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         }
 
         Klients klients = new Klients(vards.trim(), numurs.trim(), adrese.trim());
@@ -229,6 +241,17 @@ public class Main {
             int ok = JOptionPane.showConfirmDialog(galvenaisLogs, "Izveidot vēl vienu picu?", "Vēl viena?",
                     JOptionPane.YES_NO_OPTION);
             if (ok != JOptionPane.YES_OPTION) break;
+        }
+
+        if (pas.getPicas().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    galvenaisLogs,
+                    "Pasūtījumam nav nevienas picas!",
+                    "Kļūda",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            picerija.getPasutijumi().remove(pas);
+            return;
         }
 
         pas.aprekinatKopSummu();
@@ -291,10 +314,36 @@ public class Main {
 
     // statusa maiņa
     private static void mainitStatusu(Picerija picerija) {
-        String s = JOptionPane.showInputDialog(galvenaisLogs, "Ievadi pasūtījuma ID:");
-        if (s == null || s.isBlank()) return;
+        List<Pasutijums> akt = picerija.iegutAktivosPasutijumus();
+        if (akt == null || akt.isEmpty()) {
+            JOptionPane.showMessageDialog(galvenaisLogs, "Nav aktīvu pasūtījumu!");
+            return;
+        }
 
-        int id = Integer.parseInt(s.trim());
+        String[] sar = new String[akt.size()];
+        for (int i = 0; i < akt.size(); i++) sar[i] = akt.get(i).IsaInfo();
+
+        String izvele = (String) JOptionPane.showInputDialog(
+                galvenaisLogs,
+                "Izvēlies pasūtījumu:",
+                "Pasūtījumi",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                sar,
+                sar[0]
+        );
+        if (izvele == null) return;
+
+        int id;
+        try {
+            String[] dal = izvele.split("\\|");
+            String idTeksts = dal[0].replace("ID:", "").trim();
+            id = Integer.parseInt(idTeksts);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(galvenaisLogs, "Kļūda: nepareizs ID!");
+            return;
+        }
+
         Pasutijums pas = picerija.atrastPasutijumu(id);
         if (pas == null) {
             JOptionPane.showMessageDialog(galvenaisLogs, "Pasūtījums nav atrasts!");
@@ -315,6 +364,52 @@ public class Main {
         if (jauns == null) return;
         pas.setStatuss(jauns);
         JOptionPane.showMessageDialog(galvenaisLogs, "Atjaunināts:\n" + pas.IsaInfo());
+    }
+
+    private static void drukatCeku(Picerija picerija) {
+        List<Pasutijums> saraksts = picerija.getPasutijumi();
+        if (saraksts == null || saraksts.isEmpty()) {
+            JOptionPane.showMessageDialog(galvenaisLogs, "Nav pasūtījumu!");
+            return;
+        }
+
+        String[] sar = new String[saraksts.size()];
+        for (int i = 0; i < saraksts.size(); i++) sar[i] = saraksts.get(i).IsaInfo();
+
+        String izvele = (String) JOptionPane.showInputDialog(
+                galvenaisLogs,
+                "Izvēlies pasūtījumu:",
+                "Čeks",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                sar,
+                sar[0]
+        );
+        if (izvele == null) return;
+
+        int id;
+        try {
+            String[] dal = izvele.split("\\|");
+            String idTeksts = dal[0].replace("ID:", "").trim();
+            id = Integer.parseInt(idTeksts);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(galvenaisLogs, "Kļūda: nepareizs ID!");
+            return;
+        }
+
+        Pasutijums pas = picerija.atrastPasutijumu(id);
+        if (pas == null) {
+            JOptionPane.showMessageDialog(galvenaisLogs, "Pasūtījums nav atrasts!");
+            return;
+        }
+
+        JTextArea zona = new JTextArea(pas.ceks());
+        zona.setEditable(false);
+        zona.setCaretPosition(0);
+        JScrollPane scroll = new JScrollPane(zona);
+        scroll.setPreferredSize(new Dimension(380, 300));
+
+        JOptionPane.showMessageDialog(galvenaisLogs, scroll, "Čeks", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // saraksta parādīšana
