@@ -3,6 +3,7 @@ package lvt_pd;
 import javax.sound.sampled.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class Main {
 
 //MUZIKA ATSK
 	    private static Clip klips;
+	    private static JFrame galvenaisLogs;
 		private static void atskaņotSkanu(String soundFile) {
 		    try {
 		        java.io.File f = new java.io.File(soundFile);
@@ -41,6 +43,48 @@ public class Main {
 	    public static boolean irDerigsNumurs(String teksts) {
 	        return teksts != null
 	                && teksts.matches("\\d{8}");
+	    }
+
+	    // Vienkāršs R-Keeper stila dizains
+	    private static void iestatītDizainu() {
+	        Font pamatFonts = new Font("SansSerif", Font.PLAIN, 14);
+	        Font virsraksts = new Font("SansSerif", Font.BOLD, 18);
+	        Color fons = new Color(28, 28, 28);
+	        Color panelis = new Color(38, 38, 38);
+	        Color akcents = new Color(0, 153, 102);
+	        Color teksts = new Color(245, 245, 245);
+
+	        UIManager.put("Panel.background", panelis);
+	        UIManager.put("OptionPane.background", panelis);
+	        UIManager.put("OptionPane.messageForeground", teksts);
+	        UIManager.put("Label.foreground", teksts);
+	        UIManager.put("Button.background", akcents);
+	        UIManager.put("Button.foreground", Color.WHITE);
+	        UIManager.put("TextField.background", Color.WHITE);
+	        UIManager.put("TextField.foreground", Color.BLACK);
+	        UIManager.put("ComboBox.background", Color.WHITE);
+	        UIManager.put("ComboBox.foreground", Color.BLACK);
+	        UIManager.put("List.background", Color.WHITE);
+	        UIManager.put("List.foreground", Color.BLACK);
+	        UIManager.put("Menu.background", panelis);
+	        UIManager.put("Menu.foreground", teksts);
+	        UIManager.put("MenuItem.background", panelis);
+	        UIManager.put("MenuItem.foreground", teksts);
+	        UIManager.put("OptionPane.font", pamatFonts);
+	        UIManager.put("Label.font", pamatFonts);
+	        UIManager.put("Button.font", pamatFonts);
+	        UIManager.put("TextField.font", pamatFonts);
+	        UIManager.put("ComboBox.font", pamatFonts);
+	        UIManager.put("List.font", pamatFonts);
+	        UIManager.put("OptionPane.messageFont", pamatFonts);
+	        UIManager.put("OptionPane.buttonFont", pamatFonts);
+	        UIManager.put("Panel.font", pamatFonts);
+	        UIManager.put("TitledBorder.font", pamatFonts);
+	        UIManager.put("ToolTip.background", panelis);
+	        UIManager.put("ToolTip.foreground", teksts);
+	        UIManager.put("ToolTip.font", pamatFonts);
+	        UIManager.put("RootPane.background", fons);
+	        UIManager.put("OptionPane.titleFont", virsraksts);
 	    }
 
 	
@@ -77,6 +121,7 @@ public class Main {
 
     public static void main(String[] args) {
         Picerija picerija = new Picerija();
+        iestatītDizainu();
         atskaņotSkanu("./audio/game.wav");
         while (true) {
             String[] izvelne = {
@@ -89,15 +134,7 @@ public class Main {
                     "0) Iziet"
             };
 
-            String izvele = (String) JOptionPane.showInputDialog(
-                    null,
-                    "IZVĒLE:",
-                    "PICĒRIJA",
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    izvelne,
-                    izvelne[0]
-            );
+            String izvele = dizains.raditIzvelni(galvenaisLogs, izvelne);
 
             if (izvele == null || izvele.startsWith("0")) break;
 
@@ -111,20 +148,20 @@ public class Main {
                 } else if (izvele.startsWith("4")) {
                     mainitStatusu(picerija);
                 } else if (izvele.startsWith("5")) {
-                    String f = JOptionPane.showInputDialog("Faila nosaukums (piem. pasutijumi.txt):");
+                    String f = JOptionPane.showInputDialog(galvenaisLogs, "Faila nosaukums (piem. pasutijumi.txt):");
                     if (f != null && !f.isBlank()) {
                         picerija.saglabatPasutijumuFaila(f.trim());
-                        JOptionPane.showMessageDialog(null, "Saglabāts!");
+                        JOptionPane.showMessageDialog(galvenaisLogs, "Saglabāts!");
                     }
                 } else if (izvele.startsWith("6")) {
-                    String f = JOptionPane.showInputDialog("Faila nosaukums (piem. pasutijumi.txt):");
+                    String f = JOptionPane.showInputDialog(galvenaisLogs, "Faila nosaukums (piem. pasutijumi.txt):");
                     if (f != null && !f.isBlank()) {
                         picerija.ieladetPasutijumuNoFaila(f.trim());
-                        JOptionPane.showMessageDialog(null, "Ielādēts!");
+                        JOptionPane.showMessageDialog(galvenaisLogs, "Ielādēts!");
                     }
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Kļūda: " + ex.getMessage());
+                JOptionPane.showMessageDialog(galvenaisLogs, "Kļūda: " + ex.getMessage());
             }
         }
     }
@@ -134,14 +171,14 @@ public class Main {
     	String vards;
 
     	while (true) {
-    	    vards = JOptionPane.showInputDialog("Ievadiet vārdu:");
+    	    vards = JOptionPane.showInputDialog(galvenaisLogs, "Ievadiet vārdu:");
     	    if (vards == null) return;
 
     	    if (irTikaiBurti(vards)) {
     	        break;
     	    } else {
     	        JOptionPane.showMessageDialog(
-    	                null,
+    	                galvenaisLogs,
     	                "Vārds drīkst saturēt tikai burtus!",
     	                "Kļūda",
     	                JOptionPane.ERROR_MESSAGE
@@ -153,14 +190,14 @@ public class Main {
     	String numurs;
 
     	while (true) {
-    	    numurs = JOptionPane.showInputDialog("Ievadiet telefona numuru (8 cipari):");
+    	    numurs = JOptionPane.showInputDialog(galvenaisLogs, "Ievadiet telefona numuru (8 cipari):");
     	    if (numurs == null) return;
 
     	    if (irDerigsNumurs(numurs)) {
     	        break;
     	    } else {
     	        JOptionPane.showMessageDialog(
-    	                null,
+    	                galvenaisLogs,
     	                "Numuram jābūt tieši no 8 cipariem!",
     	                "Kļūda",
     	                JOptionPane.ERROR_MESSAGE
@@ -170,13 +207,13 @@ public class Main {
 
 
         String[] piegadeIzv = {"UZ_VIETAS", "PIEGADE"};
-        String piegade = (String) JOptionPane.showInputDialog(null, "Ievadiet piegādes veidu:", "Piegāde",
+        String piegade = (String) JOptionPane.showInputDialog(galvenaisLogs, "Ievadiet piegādes veidu:", "Piegāde",
                 JOptionPane.QUESTION_MESSAGE, null, piegadeIzv, piegadeIzv[0]);
         if (piegade == null) return;
 
         String adrese = "-";
         if ("PIEGADE".equals(piegade)) {
-            adrese = JOptionPane.showInputDialog("Ievadiet adresi:");
+            adrese = JOptionPane.showInputDialog(galvenaisLogs, "Ievadiet adresi:");
             if (adrese == null || adrese.isBlank()) return;
         }
 
@@ -189,30 +226,30 @@ public class Main {
             if (pica == null) break;
             pas.pievienotPreci(pica);
 
-            int ok = JOptionPane.showConfirmDialog(null, "Izveidot vēl vienu picu?", "Vēl viena?",
+            int ok = JOptionPane.showConfirmDialog(galvenaisLogs, "Izveidot vēl vienu picu?", "Vēl viena?",
                     JOptionPane.YES_NO_OPTION);
             if (ok != JOptionPane.YES_OPTION) break;
         }
 
         pas.aprekinatKopSummu();
 
-        int apst = JOptionPane.showConfirmDialog(null,
+        int apst = JOptionPane.showConfirmDialog(galvenaisLogs,
                 pas.fullInfo() + "\nAPSTIPRINĀT?",
                 "Apstiprināt",
                 JOptionPane.YES_NO_OPTION);
 
         if (apst != JOptionPane.YES_OPTION) {
             pas.setStatuss(Pasutijums.PasutijumaStatus.ATCELTS);
-            JOptionPane.showMessageDialog(null, "Pasūtījums atcelts.");
+            JOptionPane.showMessageDialog(galvenaisLogs, "Pasūtījums atcelts.");
         } else {
-            JOptionPane.showMessageDialog(null, "Pasūtījums saglabāts!\n" + pas.IsaInfo());
+            JOptionPane.showMessageDialog(galvenaisLogs, "Pasūtījums saglabāts!\n" + pas.IsaInfo());
         }
     }
 
     // izveidot picu
     private static Pica izveidotPicu() {
         PicasVeids veids = (PicasVeids) JOptionPane.showInputDialog(
-                null,
+                galvenaisLogs,
                 "Izvēlieties picu:",
                 "Picas izvēle",
                 JOptionPane.QUESTION_MESSAGE,
@@ -224,7 +261,7 @@ public class Main {
 
         String[] izm = {"S", "M", "L"};
         String izmIzv = (String) JOptionPane.showInputDialog(
-                null, "Picas izmērs:", "Izmērs",
+                galvenaisLogs, "Picas izmērs:", "Izmērs",
                 JOptionPane.QUESTION_MESSAGE, null, izm, izm[1]
         );
         if (izmIzv == null) return null;
@@ -247,26 +284,26 @@ public class Main {
 
         p.aprekinatCenu(veids.bāzesCena, IZMERA_KOEF[izIndex], PIEDEVAS_CENA, MERCES_CENA);
 
-        JOptionPane.showMessageDialog(null, "Izveidota pica:\n\n" + p.IsaInfo());
+        JOptionPane.showMessageDialog(galvenaisLogs, "Izveidota pica:\n\n" + p.IsaInfo());
         return p;
        
     }
 
     // statusa maiņa
     private static void mainitStatusu(Picerija picerija) {
-        String s = JOptionPane.showInputDialog("Ievadi pasūtījuma ID:");
+        String s = JOptionPane.showInputDialog(galvenaisLogs, "Ievadi pasūtījuma ID:");
         if (s == null || s.isBlank()) return;
 
         int id = Integer.parseInt(s.trim());
         Pasutijums pas = picerija.atrastPasutijumu(id);
         if (pas == null) {
-            JOptionPane.showMessageDialog(null, "Pasūtījums nav atrasts!");
+            JOptionPane.showMessageDialog(galvenaisLogs, "Pasūtījums nav atrasts!");
             return;
         }
 
         Pasutijums.PasutijumaStatus[] statusi = Pasutijums.PasutijumaStatus.values();
         Pasutijums.PasutijumaStatus jauns = (Pasutijums.PasutijumaStatus) JOptionPane.showInputDialog(
-                null,
+                galvenaisLogs,
                 "Izvēlies jaunu statusu:\n\n" + pas.IsaInfo(),
                 "Statuss",
                 JOptionPane.QUESTION_MESSAGE,
@@ -277,18 +314,18 @@ public class Main {
 
         if (jauns == null) return;
         pas.setStatuss(jauns);
-        JOptionPane.showMessageDialog(null, "Atjaunināts:\n" + pas.IsaInfo());
+        JOptionPane.showMessageDialog(galvenaisLogs, "Atjaunināts:\n" + pas.IsaInfo());
     }
 
     // saraksta parādīšana
     private static void paraditSarakstu(String title, List<Pasutijums> saraksts) {
         if (saraksts == null || saraksts.isEmpty()) {
-            JOptionPane.showMessageDialog(null, title + ": nav.");
+            JOptionPane.showMessageDialog(galvenaisLogs, title + ": nav.");
             return;
         }
         StringBuilder sb = new StringBuilder();
         for (Pasutijums p : saraksts) sb.append(p.IsaInfo()).append("\n");
-        JOptionPane.showMessageDialog(null, sb.toString(), title, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(galvenaisLogs, sb.toString(), title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     // multi izvēle 
@@ -300,7 +337,7 @@ public class Main {
             menu[menu.length - 1] = "Gatavs";
 
             String izvēle = (String) JOptionPane.showInputDialog(
-                    null,
+                    galvenaisLogs,
                     title + "\nIzvēlētie: " + (izveletie.isEmpty() ? "-" : String.join(", ", izveletie)),
                     "Izvēle",
                     JOptionPane.QUESTION_MESSAGE,
@@ -313,7 +350,7 @@ public class Main {
 
             if (!izveletie.contains(izvēle)) izveletie.add(izvēle);
 
-            int turp = JOptionPane.showConfirmDialog(null, "Pievienot vēl?", "Turpināt", JOptionPane.YES_NO_OPTION);
+            int turp = JOptionPane.showConfirmDialog(galvenaisLogs, "Pievienot vēl?", "Turpināt", JOptionPane.YES_NO_OPTION);
             if (turp != JOptionPane.YES_OPTION) break;
         }
         return izveletie;
