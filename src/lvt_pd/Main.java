@@ -101,7 +101,7 @@ public class Main {
         @Override public String toString() {
             return nosaukums + " (" + String.format("%.2f", bāzesCena) + "€)";
         }
-
+    }
 
     private static final PicasVeids[] PICA_SARAKSTS = {
             new PicasVeids("Margarita", 6.00),
@@ -125,14 +125,14 @@ public class Main {
         atskaņotSkanu("./audio/game.wav");
         while (true) {
             String[] izvelne = {
-                    "1) Pasūtījuma reģistrēšana",
-                    "2) Skatīt aktīvos pasūtījumus",
-                    "3) Skatīt nodotos pasūtījumus",
-                    "4) Mainīt pasūtījuma statusu",
-                    "5) Drukāt čeku",
-                    "6) Saglabāt pasūtījumus failā",
-                    "7) Ielādēt pasūtījumus no faila",
-                    "0) Iziet"
+                    "Pasūtījuma reģistrēšana",
+                    "Skatīt aktīvos pasūtījumus",
+                    "Skatīt nodotos pasūtījumus",
+                    "Mainīt pasūtījuma statusu",
+                    "Drukāt čeku",
+                    "Saglabāt pasūtījumus failā",
+                    "Ielādēt pasūtījumus no faila",
+                    "Iziet"
             };
 
             String izvele = dizains.raditIzvelni(galvenaisLogs, izvelne);
@@ -140,23 +140,23 @@ public class Main {
             if (izvele == null || izvele.startsWith("0")) break;
 
             try {
-                if (izvele.startsWith("1")) {
+                if (izvele.startsWith("Pasūtījuma reģistrēšana")) {
                     pasutijumaRegistrēšana(picerija);
-                } else if (izvele.startsWith("2")) {
+                } else if (izvele.startsWith("Skatīt aktīvos pasūtījumus")) {
                     paraditSarakstu("Aktīvie pasūtījumi", picerija.iegutAktivosPasutijumus());
-                } else if (izvele.startsWith("3")) {
+                } else if (izvele.startsWith("Skatīt nodotos pasūtījumus")) {
                     paraditSarakstu("Nodotie pasūtījumi", picerija.iegutNodotosPasutijumus());
-                } else if (izvele.startsWith("4")) {
+                } else if (izvele.startsWith("Mainīt pasūtījuma statusu")) {
                     mainitStatusu(picerija);
-                } else if (izvele.startsWith("5")) {
+                } else if (izvele.startsWith("Drukāt čeku")) {
                     drukatCeku(picerija);
-                } else if (izvele.startsWith("6")) {
+                } else if (izvele.startsWith("Saglabāt pasūtījumus failā")) {
                     String f = JOptionPane.showInputDialog(galvenaisLogs, "Faila nosaukums (piem. pasutijumi.txt):");
                     if (f != null && !f.isBlank()) {
                         picerija.saglabatPasutijumuFaila(f.trim());
                         JOptionPane.showMessageDialog(galvenaisLogs, "Saglabāts!");
                     }
-                } else if (izvele.startsWith("7")) {
+                } else if (izvele.startsWith("Ielādēt pasūtījumus no faila")) {
                     String f = JOptionPane.showInputDialog(galvenaisLogs, "Faila nosaukums (piem. pasutijumi.txt):");
                     if (f != null && !f.isBlank()) {
                         picerija.ieladetPasutijumuNoFaila(f.trim());
@@ -499,5 +499,4 @@ public class Main {
     private static String[] opcijaSaraksts(String[] a) {
     	return a;
     	}
-}
 }
