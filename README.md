@@ -28,10 +28,8 @@ kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkal
 
 ### Papildfunkcionalitāte ( PAPILDINĀT PROGRAMMU )🟠
 - [ ] Muzika un skaņas darbībām kā picas pievienošana, fona mūzika.. 🟠
-- [ ] Grafika 🔴 
-- [ ] Bildes un animācijas 🔴 
-- [ ] Timer priekš picas izgatavošanas 🔴 
-- [ ] Darbinieka kods sākumā 🔴 
+- [x] Grafika 
+- [x] Timer priekš picas izgatavošanas 
       
 ---
 ### Izmantotās tehnoloģijas
