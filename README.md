@@ -1,46 +1,109 @@
-##  Picerija – Java picas pasūtījumu sistēma
-<p align="center">
-  <img src="picerijaimg.png" width="600">
+<div align="center">
+  <h1>🍕 Picerija – Java picas pasūtījumu sistēma</h1>
+  <p><strong>Ātra, saprotama pasūtījumu sistēma.</strong></p>
+  <p>
+    <img src="picerijaimg.png" width="680" alt="Picerija sistēmas ekrānattēls">
+  </p>
+  <p>
+    <em>Pasūtījums ienāk → tiek apstrādāts secīgi → tiek nodots klientam.</em>
+  </p>
+</div>
+
+<hr>
+
+<h2>✨ Projekta ideja</h2>
+<p>
+  Šis projekts ir Java programma, kas imitē picas pasūtījumu apkalpošanu picērijā.
+  Pasūtījumi tiek apstrādāti secīgi - pirmais ienāca, pirmais tiek apkalpots.
 </p>
-Šis projekts ir vienkārša Java programma, 
-kas imitē picas pasūtījumu apkalpošanu picērijā. Programmā tiek izmantota rinda (Queue),
-lai pasūtījumi tiktu apkalpoti secīgi – pirmais pasūtījums, kas ienāk
-sistēmā, tiek apkalpots pirmais.
 
-### Mērķis
-Projekta mērķis ir izveidot vienkāršu, bet pilnībā funkcionālu sistēmu,
-kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkalpošanā picērijā.
----
+<h2>🎯 Mērķis</h2>
+<p>
+  Izveidot vienkāršu, bet pilnībā funkcionālu sistēmu, kas reālajā vidē palīdzētu
+  klientu un pasūtījumu apkalpošanai.
+</p>
 
-### Funkcionalitāte 🟢 
-- [X] klienta datu ievade (vārds, tālrunis, piegādes veids),
-- [X] picas izvēle no saraksta,
-- [X] picas izmēra izvēle (S / M / L),
-- [X] mērču un piedevu izvēle,
-- [X] vairāku picu pievienošana vienam pasūtījumam,
-- [X] automātiska cenas aprēķināšana,
-- [X] pasūtījumu rinda,
-- [X] pasūtījumu statusu maiņa (PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS),
-- [X] aktīvo un nodoto pasūtījumu apskate,
-- [X] pasūtījumu saglabāšana un ielāde no faila.
+<hr>
 
----
+<h2>🧭 Kā sistēma darbojas</h2>
+<ol>
+  <li>Klients ievada datus un izvēlas pasūtījumu.</li>
+  <li>Sistēma aprēķina cenu un ieliek pasūtījumu rindā.</li>
+  <li>Pasūtījums pāriet pa statusiem: <strong>PIEŅEMTS → GATAVOJAS → GATAVS → NODOTS</strong>.</li>
+  <li>Pasūtījumi tiek saglabāti un vajadzības gadījumā ielādēti no faila.</li>
+</ol>
 
-### Papildfunkcionalitāte ( PAPILDINĀT PROGRAMMU )🟠
-- [ ] Muzika un skaņas darbībām kā picas pievienošana, fona mūzika.. 🟠
-- [x] Grafika 
-- [x] Timer priekš picas izgatavošanas 
-      
----
-### Izmantotās tehnoloģijas
-- Java
-- Java Collections Framework (Queue, List)
-- JOptionPane
-- Failu ievade / izvade (FileWriter, FileReader)
+<hr>
 
----
+<h2>✅ Funkcionalitāte</h2>
+<table>
+  <thead>
+    <tr>
+      <th align="left">Funkcija</th>
+      <th align="left">Apraksts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Klienta dati</td>
+      <td>Vārds, tālrunis un piegādes veids.</td>
+    </tr>
+    <tr>
+      <td>Picas izvēle</td>
+      <td>Saraksts ar pieejamajām picām un izmēriem (S / M / L).</td>
+    </tr>
+    <tr>
+      <td>Piedevas</td>
+      <td>Mērces un papildu sastāvdaļas pēc izvēles.</td>
+    </tr>
+    <tr>
+      <td>Vairākas picas</td>
+      <td>Vienam pasūtījumam var pievienot vairākas picas.</td>
+    </tr>
+    <tr>
+      <td>Cenas aprēķins</td>
+      <td>Automātiska kopējās cenas noteikšana.</td>
+    </tr>
+    <tr>
+      <td>Pasūtījumu rinda</td>
+      <td>FIFO secība, lai viss notiek loģiski un saprotami.</td>
+    </tr>
+    <tr>
+      <td>Statusi</td>
+      <td>PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS.</td>
+    </tr>
+    <tr>
+      <td>Failu saglabāšana</td>
+      <td>Pasūtījumu saglabāšana un ielāde no faila.</td>
+    </tr>
+  </tbody>
+</table>
 
-🟢 - Pabeigts
-🟡 - Daļēji pabeigts
-🟠 - Izstrādes procesā
-🔴 - NEIESĀKTS
+<hr>
+
+<h2>🟠 Papildfunkcionalitāte (idejas attīstībai)</h2>
+<ul>
+  <li>🎵 Mūzika un skaņas darbībām (picas pievienošana, fona mūzika)</li>
+  <li>🎨 Grafika un detalizētāks vizuālais interfeiss</li>
+  <li>⏱️ Taimeris picas izgatavošanas laikam</li>
+</ul>
+
+<hr>
+
+<h2>🧰 Izmantotās tehnoloģijas</h2>
+<ul>
+  <li>Java</li>
+  <li>Java Collections Framework (Queue, List)</li>
+  <li>JOptionPane</li>
+  <li>Failu ievade / izvade (FileWriter, FileReader)</li>
+</ul>
+
+<hr>
+
+<h2>📌 Statusa leģenda</h2>
+<ul>
+  <li>🟢 Pabeigts</li>
+  <li>🟡 Daļēji pabeigts</li>
+  <li>🟠 Izstrādes procesā</li>
+  <li>🔴 Neiesākts</li>
+</ul>
