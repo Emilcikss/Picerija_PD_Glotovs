@@ -137,7 +137,7 @@ public class Main {
 
             String izvele = dizains.raditIzvelni(galvenaisLogs, izvelne);
 
-            if (izvele == null || izvele.startsWith("0")) break;
+            if (izvele == null || izvele.startsWith("Iziet")) break;
 
             try {
                 if (izvele.startsWith("Pasūtījuma reģistrēšana")) {
