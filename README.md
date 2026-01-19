@@ -66,3 +66,5 @@ Projekts veidots ar mērķi simulēt **reālu biznesa vidi** un parādīt objekt
 ---
 
 ## 🔄 Pasūtījuma dzīves cikls
+
+##**PIEŅEMTS ➜ GATAVOJAS ➜ GATAVS ➜ NODOTS**
