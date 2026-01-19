@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🍕 Picerija – Java picas pasūtījumu sistēma</h1>
+  <h1>🍕 Picerija - Java picas pasūtījumu sistēma</h1>
   <p><strong>Ātra, saprotama pasūtījumu sistēma.</strong></p>
   <p>
     <img src="picerijaimg.png" width="680" alt="Picerija sistēmas ekrānattēls">
@@ -11,13 +11,13 @@
 
 <hr>
 
-<h2>✨ Projekta ideja</h2>
+<h2> Projekta ideja</h2>
 <p>
   Šis projekts ir Java programma, kas imitē picas pasūtījumu apkalpošanu picērijā.
   Pasūtījumi tiek apstrādāti secīgi - pirmais ienāca, pirmais tiek apkalpots.
 </p>
 
-<h2>🎯 Mērķis</h2>
+<h2> Mērķis</h2>
 <p>
   Izveidot vienkāršu, bet pilnībā funkcionālu sistēmu, kas reālajā vidē palīdzētu
   klientu un pasūtījumu apkalpošanai.
@@ -25,7 +25,7 @@
 
 <hr>
 
-<h2>🧭 Kā sistēma darbojas</h2>
+<h2> Kā sistēma darbojas</h2>
 <ol>
   <li>Klients ievada datus un izvēlas pasūtījumu.</li>
   <li>Sistēma aprēķina cenu un ieliek pasūtījumu rindā.</li>
@@ -35,7 +35,7 @@
 
 <hr>
 
-<h2>✅ Funkcionalitāte</h2>
+<h2>🟢 Funkcionalitāte</h2>
 <table>
   <thead>
     <tr>
@@ -83,9 +83,9 @@
 
 <h2>🟠 Papildfunkcionalitāte (idejas attīstībai)</h2>
 <ul>
-  <li>🎵 Mūzika un skaņas darbībām (picas pievienošana, fona mūzika)</li>
-  <li>🎨 Grafika un detalizētāks vizuālais interfeiss</li>
-  <li>⏱️ Taimeris picas izgatavošanas laikam</li>
+  <li> Mūzika un skaņas darbībām (picas pievienošana, fona mūzika)</li>
+  <li> Grafika un detalizētāks vizuālais interfeiss</li>
+  <li> Taimeris picas izgatavošanas laikam</li>
 </ul>
 
 <hr>
