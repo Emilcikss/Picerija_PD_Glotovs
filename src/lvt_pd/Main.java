@@ -299,10 +299,10 @@ public class Main {
         Pica p = new Pica(veids.nosaukums);
         p.setIzmers(izIndex);
 
-        List<String> merces = multiIzvele("Picas mērces (var vairākas):", MERCES);
+        List<String> merces = multiIzvele("Picas mērces (var vairākas, 0.50):", MERCES);
         for (String m : merces) p.pievienotMerci(m);
 
-        List<String> piedevas = multiIzvele("Picas piedevas (var vairākas):", PIEDEVAS);
+        List<String> piedevas = multiIzvele("Picas piedevas (var vairākas, 0.75):", PIEDEVAS);
         for (String pd : piedevas) p.pievienotPiedavu(pd);
 
         p.aprekinatCenu(veids.bāzesCena, IZMERA_KOEF[izIndex], PIEDEVAS_CENA, MERCES_CENA);
@@ -395,6 +395,7 @@ public class Main {
     }
 
     private static void saktsGatavosanasTaimeris(Pasutijums pas, int sekundes) {
+    	atskaņotSkanu("./audio/timer.wav");
         pas.setBlokets(true);
         new Thread(() -> {
             for (int i = sekundes; i >= 0; i--) {
