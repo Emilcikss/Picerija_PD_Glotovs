@@ -1,70 +1,46 @@
-<div align="center">
-
-<img src="picerijaimg.png" width="85%" style="border-radius:20px; box-shadow:0 0 25px rgba(0,0,0,0.5)">
-
-<h1>🍕 PICĒRIJA – Java picas pasūtījumu sistēma</h1>
-
-<p>
-<b>Modernā desktop lietotne picēriju pasūtījumu pārvaldībai</b>  
-<br>
-Java • Queue sistēma • Grafiskais interfeiss • Failu saglabāšana
+##  Picerija – Java picas pasūtījumu sistēma
+<p align="center">
+  <img src="picerijaimg.png" width="600">
 </p>
+Šis projekts ir vienkārša Java programma, 
+kas imitē picas pasūtījumu apkalpošanu picērijā. Programmā tiek izmantota rinda (Queue),
+lai pasūtījumi tiktu apkalpoti secīgi – pirmais pasūtījums, kas ienāk
+sistēmā, tiek apkalpots pirmais.
 
-<a href="https://github.com/USERNAME/REPO/releases">
-<img src="https://img.shields.io/badge/Lejupielādēt%20programmu-Download-green?style=for-the-badge">
-</a>
+### Mērķis
+Projekta mērķis ir izveidot vienkāršu, bet pilnībā funkcionālu sistēmu,
+kas varetu būt pielietojuma reālā situācijā - klientu un pasūtījumu apkalpošanā picērijā.
+---
 
-<a href="https://github.com/USERNAME/REPO/archive/refs/heads/main.zip">
-<img src="https://img.shields.io/badge/Avota%20kods-ZIP-blue?style=for-the-badge">
-</a>
-
-</div>
+### Funkcionalitāte 🟢 
+- [X] klienta datu ievade (vārds, tālrunis, piegādes veids),
+- [X] picas izvēle no saraksta,
+- [X] picas izmēra izvēle (S / M / L),
+- [X] mērču un piedevu izvēle,
+- [X] vairāku picu pievienošana vienam pasūtījumam,
+- [X] automātiska cenas aprēķināšana,
+- [X] pasūtījumu rinda,
+- [X] pasūtījumu statusu maiņa (PIEŅEMTS, GATAVOJAS, GATAVS, NODOTS),
+- [X] aktīvo un nodoto pasūtījumu apskate,
+- [X] pasūtījumu saglabāšana un ielāde no faila.
 
 ---
 
-## 📌 Projekta apraksts
-
-Šī programma imitē **reālu picērijas pasūtījumu apkalpošanas sistēmu**, izmantojot **rindu (Queue)** principu.
-
-👉 Pirmais klients, kurš veic pasūtījumu, tiek apkalpots pirmais.  
-👉 Sistēma ļauj pievienot vairākas picas vienam klientam, aprēķina cenu un pārvalda pasūtījumu statusus.
-
-Projekts veidots ar mērķi simulēt **reālu biznesa vidi** un parādīt objektorientētās programmēšanas principus praksē.
+### Papildfunkcionalitāte ( PAPILDINĀT PROGRAMMU )🟠
+- [ ] Muzika un skaņas darbībām kā picas pievienošana, fona mūzika.. 🟠
+- [x] Grafika 
+- [x] Timer priekš picas izgatavošanas 
+      
+---
+### Izmantotās tehnoloģijas
+- Java
+- Java Collections Framework (Queue, List)
+- JOptionPane
+- Failu ievade / izvade (FileWriter, FileReader)
 
 ---
 
-## 🎯 Projekta mērķis
-
-✔ Izveidot stabilu un saprotamu pasūtījumu sistēmu  
-✔ Apvienot loģiku ar grafisko interfeisu  
-✔ Attīstīt darba prasmes ar Java Collections  
-✔ Simulēt reālu picērijas darba procesu  
-
----
-
-## 🚀 Funkcionalitāte
-
-<table>
-<tr>
-<td>✅ Klienta datu ievade</td>
-<td>✅ Pasūtījumu rinda (Queue)</td>
-</tr>
-<tr>
-<td>✅ Picas izmēru izvēle</td>
-<td>✅ Automātisks cenu aprēķins</td>
-</tr>
-<tr>
-<td>✅ Piedevu un mērču sistēma</td>
-<td>✅ Statusu pārvaldība</td>
-</tr>
-<tr>
-<td>✅ Vairāku picu pievienošana</td>
-<td>✅ Pasūtījumu saglabāšana</td>
-</tr>
-</table>
-
----
-
-## 🔄 Pasūtījuma dzīves cikls
-
-##**PIEŅEMTS ➜ GATAVOJAS ➜ GATAVS ➜ NODOTS**
+🟢 - Pabeigts
+🟡 - Daļēji pabeigts
+🟠 - Izstrādes procesā
+🔴 - NEIESĀKTS
